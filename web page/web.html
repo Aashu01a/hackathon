@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Learning Path Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .recommendations {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Adaptive Learning Path Generator</h2>
+    
+    <!-- Section to gather user's preferences -->
+    <div class="section">
+        <h3>Tell us about your learning preferences</h3>
+        <form id="preferencesForm">
+            <label for="strengths">What are your strengths?</label>
+            <input type="text" id="strengths" name="strengths" placeholder="e.g., Math, Science">
+            
+            <label for="weaknesses">What are your weaknesses?</label>
+            <input type="text" id="weaknesses" name="weaknesses" placeholder="e.g., English, History">
+            
+            <label for="learningStyle">Preferred Learning Style:</label>
+            <select id="learningStyle" name="learningStyle">
+                <option value="visual">Visual</option>
+                <option value="auditory">Auditory</option>
+                <option value="kinesthetic">Kinesthetic</option>
+                <option value="reading">Reading/Writing</option>
+            </select>
+            
+            <button type="button" onclick="generatePath()">Generate Learning Path</button>
+        </form>
+    </div>
+
+    <!-- Section to display recommended learning path -->
+    <div class="section recommendations" id="recommendations">
+        <h3>Recommended Learning Path</h3>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script>
+    // Sample function to generate a learning path based on user input
+    function generatePath() {
+        // Get input values
+        const strengths = document.getElementById('strengths').value;
+        const weaknesses = document.getElementById('weaknesses').value;
+        const learningStyle = document.getElementById('learningStyle').value;
+
+        // Generate recommendations based on input
+        let recommendations = `<p><strong>Learning Style:</strong> ${learningStyle}</p>`;
+        
+        recommendations += `<p><strong>Recommended Courses:</strong></p><ul>`;
+        
+        if (strengths.toLowerCase().includes('math')) {
+            recommendations += `<li>Advanced Math Tutorials</li>`;
+        }
+        if (weaknesses.toLowerCase().includes('history')) {
+            recommendations += `<li>Basic History Concepts</li>`;
+        }
+        
+        recommendations += `<li>Personalized Learning Resources for ${learningStyle} learners</li>`;
+        recommendations += `</ul>`;
+
+        // Display recommendations
+        document.getElementById('output').innerHTML = recommendations;
+    }
+</script>
+
+</body>
+</html>
